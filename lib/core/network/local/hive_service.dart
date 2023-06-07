@@ -24,7 +24,6 @@ class HiveService {
   Future<void> addBatch(BatchHiveModel batch) async {
     var box = await Hive.openBox<BatchHiveModel>(HiveTableConstant.batchBox);
     await box.put(batch.batchId, batch);
-    box.close();
   }
 
   Future<List<BatchHiveModel>> getAllBatches() async {
@@ -38,7 +37,6 @@ class HiveService {
   Future<void> addCourse(CourseHiveModel course) async {
     var box = await Hive.openBox<CourseHiveModel>(HiveTableConstant.courseBox);
     await box.put(course.courseId, course);
-    box.close();
   }
 
   Future<List<CourseHiveModel>> getAllCourses() async {
@@ -65,6 +63,9 @@ class HiveService {
       for (var batch in batches) {
         await addBatch(batch);
       }
+
+      var batchess = getAllBatches();
+      print(batchess);
     }
   }
 
