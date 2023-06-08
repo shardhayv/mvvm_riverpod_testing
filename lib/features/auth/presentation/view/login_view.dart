@@ -63,7 +63,13 @@ class _LoginViewState extends State<LoginView> {
                     ),
                     _gap,
                     ElevatedButton(
-                      onPressed: () async {},
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          // Later we will put this navigation in view model
+                          Navigator.popAndPushNamed(
+                              context, AppRoute.homeRoute);
+                        }
+                      },
                       child: const SizedBox(
                         height: 50,
                         child: Center(
