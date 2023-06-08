@@ -1,9 +1,14 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_and_api_for_class/config/constants/hive_table_constant.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 import 'package:uuid/uuid.dart';
 
 part 'course_hive_model.g.dart';
+
+final courseHiveModelProvider = Provider(
+  (ref) => CourseHiveModel.empty(),
+);
 
 @HiveType(typeId: HiveTableConstant.courseTableId)
 class CourseHiveModel {
