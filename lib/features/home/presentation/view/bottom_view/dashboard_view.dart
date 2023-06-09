@@ -35,7 +35,9 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                 ),
               ),
             ),
-            Flexible(child: BatchWidget(batchList: batchState.batches)),
+            Flexible(
+              child: BatchWidget(batchList: batchState.batches),
+            ),
             const Align(
               alignment: Alignment.centerLeft,
               child: Text(
@@ -46,7 +48,9 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
                 ),
               ),
             ),
-            Flexible(child: CourseWidget(courseList: courseState.courses)),
+            Flexible(
+              child: CourseWidget(courseList: courseState.courses),
+            ),
           ],
         ),
       ),
