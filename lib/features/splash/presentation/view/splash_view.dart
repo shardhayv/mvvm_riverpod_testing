@@ -17,6 +17,8 @@ class _SplashViewState extends State<SplashView> {
     super.initState();
   }
 
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

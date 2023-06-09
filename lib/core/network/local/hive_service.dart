@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_and_api_for_class/config/constants/hive_table_constant.dart';
-import 'package:hive_and_api_for_class/features/auth/data/model/student_hive_model.dart';
+import 'package:hive_and_api_for_class/features/auth/data/model/auth_hive_model.dart';
 import 'package:hive_and_api_for_class/features/batch/data/model/batch_hive_model.dart';
 import 'package:hive_and_api_for_class/features/course/data/model/course_hive_model.dart';
 import 'package:path_provider/path_provider.dart';
@@ -14,7 +14,7 @@ class HiveService {
     Hive.init(directory.path);
 
     // Register Adapters
-    Hive.registerAdapter(StudentHiveModelAdapter());
+    Hive.registerAdapter(AuthHiveModelAdapter());
     Hive.registerAdapter(BatchHiveModelAdapter());
     Hive.registerAdapter(CourseHiveModelAdapter());
 
@@ -49,6 +49,19 @@ class HiveService {
     return courses;
   }
 
+  // ======================== Student Queries ========================
+  Future<void> addStudent(AuthHiveModel student) async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
+    await box.put(student.studentId, student);
+  }
+
+  Future<List<AuthHiveModel>> getAllStudents() async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
+    var students = box.values.toList();
+    box.close();
+    return students;
+  }
+
   // ======================== Insert Dummy Data ========================
   // Batch Dummy Data
   Future<void> addDummybatch() async {
@@ -66,13 +79,9 @@ class HiveService {
       for (var batch in batches) {
         await addBatch(batch);
       }
-
-      var batchess = getAllBatches();
-      print(batchess);
     }
   }
 
-  // Course Dummy Data
   Future<void> addDummyCourse() async {
     // check of course box is empty
     var box = await Hive.openBox<CourseHiveModel>(HiveTableConstant.courseBox);

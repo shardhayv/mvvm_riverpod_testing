@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart';
+import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart';
 import 'package:hive_and_api_for_class/features/batch/presentation/viewmodel/batch_view_model.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
@@ -25,11 +27,12 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _phoneController = TextEditingController(text: '9812345678');
   final _usernameController = TextEditingController(text: 'kiran');
   final _passwordController = TextEditingController(text: 'kiran123');
-
+  bool isObscure = true;
   @override
   Widget build(BuildContext context) {
     final batchState = ref.watch(batchViewModelProvider);
     final courseState = ref.watch(courseViewModelProvider);
+    final authState = ref.watch(authViewModelProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Register'),
@@ -143,7 +146,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                           color: Colors.grey,
                         ),
                         borderRadius: BorderRadius.circular(5),
-                      ), 
+                      ),
                       validator: ((value) {
                         if (value == null || value.isEmpty) {
                           return 'Please select course';
@@ -168,9 +171,19 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                   _gap,
                   TextFormField(
                     controller: _passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: isObscure,
+                    decoration: InputDecoration(
                       labelText: 'Password',
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          isObscure ? Icons.visibility : Icons.visibility_off,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            isObscure = !isObscure;
+                          });
+                        },
+                      ),
                     ),
                     validator: ((value) {
                       if (value == null || value.isEmpty) {
@@ -184,7 +197,29 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        if (_key.currentState!.validate()) {}
+                        if (_key.currentState!.validate()) {
+                          var student = StudentEntity(
+                            fname: _fnameController.text,
+                            lname: _lnameController.text,
+                            phone: _phoneController.text,
+                            username: _usernameController.text,
+                            password: _passwordController.text,
+                            batch: _dropDownValue,
+                            courses: _lstCourseSelected,
+                          );
+                          ref
+                              .read(authViewModelProvider.notifier)
+                              .registerStudent(student);
+
+                          if (authState.error != null) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(authState.error!)));
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Successfully registered')));
+                          }
+                        }
                       },
                       child: const Text('Register'),
                     ),
