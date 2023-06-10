@@ -62,6 +62,15 @@ class HiveService {
     return students;
   }
 
+  //Login
+  Future<AuthHiveModel?> login(String username, String password) async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
+    var student = box.values.firstWhere((element) =>
+        element.username == username && element.password == password);
+    box.close();
+    return student;
+  }
+
   // ======================== Insert Dummy Data ========================
   // Batch Dummy Data
   Future<void> addDummybatch() async {
