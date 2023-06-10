@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/router/app_route.dart';
+import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 
 class LoginView extends ConsumerStatefulWidget {
@@ -18,7 +19,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
-    final authState = ref.watch(authViewModelProvider);
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -85,29 +85,15 @@ class _LoginViewState extends ConsumerState<LoginView> {
                               );
 
                           if (isLogin) {
-                            Navigator.pushNamed(
-                              context,
-                              AppRoute.homeRoute,
-                            );
+                            Navigator.pushNamed(context, AppRoute.homeRoute);
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('Invalid username or password'),
-                              ),
+                            showSnackBar(
+                              message:
+                                  'Either username or password is incorrect',
+                              context: context,
+                              color: Colors.red,
                             );
                           }
-                          // if (authState.error != null) {
-                          //   ScaffoldMessenger.of(context).showSnackBar(
-                          //     SnackBar(
-                          //       content: Text(authState.error!),
-                          //     ),
-                          //   );
-                          // } else {
-                          //   Navigator.pushNamed(
-                          //     context,
-                          //     AppRoute.homeRoute,
-                          //   );
-                          // }
                         }
                       },
                       child: const SizedBox(

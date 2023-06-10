@@ -108,4 +108,25 @@ class HiveService {
       }
     }
   }
+
+  // ======================== Delete All Data ========================
+  Future<void> deleteAllData() async {
+    var box = await Hive.openBox<AuthHiveModel>(HiveTableConstant.studentBox);
+    await box.clear();
+  }
+
+  // ======================== Close Hive ========================
+  Future<void> closeHive() async {
+    await Hive.close();
+  }
+
+  // ======================== Delete Hive ========================
+  Future<void> deleteHive() async {
+    var directory = await getApplicationDocumentsDirectory();
+    Hive.init(directory.path);
+    await Hive.deleteBoxFromDisk(HiveTableConstant.studentBox);
+    await Hive.deleteBoxFromDisk(HiveTableConstant.batchBox);
+    await Hive.deleteBoxFromDisk(HiveTableConstant.courseBox);
+    await Hive.deleteFromDisk();
+  }
 }

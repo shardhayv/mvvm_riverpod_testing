@@ -11,10 +11,12 @@ class BatchWidget extends StatelessWidget {
       // Put this otherwise it will take all the space
       shrinkWrap: true,
       itemCount: batchList.length,
+      physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, childAspectRatio: 1.5),
       itemBuilder: (context, index) {
         return Card(
+          color: Colors.green[100],
           child: Center(
             child: Text(
               batchList[index].batchName,

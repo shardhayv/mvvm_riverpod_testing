@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart';
@@ -212,12 +213,16 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                               .registerStudent(student);
 
                           if (authState.error != null) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text(authState.error!)));
+                            showSnackBar(
+                              message: authState.error.toString(),
+                              context: context,
+                              color: Colors.red,
+                            );
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Successfully registered')));
+                            showSnackBar(
+                              message: 'Registered successfully',
+                              context: context,
+                            );
                           }
                         }
                       },
