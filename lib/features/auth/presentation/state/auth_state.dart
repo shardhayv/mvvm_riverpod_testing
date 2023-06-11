@@ -15,7 +15,6 @@ class AuthState {
   }
 
   AuthState copyWith({
-    bool? isLogin,
     bool? isLoading,
     String? error,
   }) {

@@ -12,3 +12,5 @@ abstract class IAuthRepository {
   Future<Either<Failure, bool>> registerStudent(StudentEntity student);
   Future<Either<Failure, bool>> loginStudent(String username, String password);
 }
+
+

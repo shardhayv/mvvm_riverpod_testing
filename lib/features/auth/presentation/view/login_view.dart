@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/router/app_route.dart';
@@ -74,6 +76,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       }),
                     ),
                     _gap,
+                    // ignore: use_build_context_synchronously
+
                     ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
@@ -84,6 +88,8 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                 _passwordController.text,
                               );
 
+                          // We don't use Navigator and Snackbar here, but for
+                          // time being, we will use it.
                           if (isLogin) {
                             Navigator.pushNamed(context, AppRoute.homeRoute);
                           } else {

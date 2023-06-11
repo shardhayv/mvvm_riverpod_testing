@@ -22,3 +22,5 @@ class StudentEntity {
     required this.password,
   });
 }
+
+

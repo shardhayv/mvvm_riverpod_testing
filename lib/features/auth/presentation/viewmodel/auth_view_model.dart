@@ -35,15 +35,10 @@ class AuthViewModel extends StateNotifier<AuthState> {
     bool isLogin = false;
     var data = await _authUseCase.loginStudent(username, password);
     data.fold(
-      (failure) => state = state.copyWith(
-        isLoading: false,
-        error: failure.error,
-      ),
+      (failure) =>
+          state = state.copyWith(isLoading: false, error: failure.error),
       (success) {
-        state = state.copyWith(
-          isLoading: false,
-          error: null,
-        );
+        state = state.copyWith(isLoading: false, error: null);
         isLogin = success;
       },
     );
@@ -51,3 +46,4 @@ class AuthViewModel extends StateNotifier<AuthState> {
     return isLogin;
   }
 }
+

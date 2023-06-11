@@ -150,7 +150,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                       ),
                       validator: ((value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please select course';
+                          return 'Please select courses';
                         }
                         return null;
                       }),
@@ -208,6 +208,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                             batch: _dropDownValue,
                             courses: _lstCourseSelected,
                           );
+
                           ref
                               .read(authViewModelProvider.notifier)
                               .registerStudent(student);
