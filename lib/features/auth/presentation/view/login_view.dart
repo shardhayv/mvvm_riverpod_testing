@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/router/app_route.dart';
+import 'package:hive_and_api_for_class/core/common/provider/internet_connectivity.dart';
 import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 
@@ -21,6 +22,19 @@ class _LoginViewState extends ConsumerState<LoginView> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
+    final internetConnectivity = ref.watch(connectivityStatusProvider);
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (internetConnectivity == ConnectivityStatus.isConnected) {
+        showSnackBar(message: 'Internet connected', context: context);
+      } else {
+        showSnackBar(
+          message: 'Internet not connected',
+          context: context,
+          color: Colors.red,
+        );
+      }
+    });
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -31,12 +45,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
                 padding: const EdgeInsets.all(8),
                 child: Column(
                   children: [
-                    const Text(
-                      'Login Page',
-                      style: TextStyle(
-                        fontSize: 25,
-                      ),
-                    ),
                     _gap,
                     TextFormField(
                       controller: _usernameController,
@@ -76,8 +84,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       }),
                     ),
                     _gap,
-                    // ignore: use_build_context_synchronously
-
                     ElevatedButton(
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
