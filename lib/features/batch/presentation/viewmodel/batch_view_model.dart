@@ -12,10 +12,10 @@ class BatchViewModel extends StateNotifier<BatchState> {
   final BatchUseCase batchUseCase;
 
   BatchViewModel(this.batchUseCase) : super(BatchState.initial()) {
-    getAllBatches();
+    //  getAllBatches();
   }
 
-  Future<void> addBatch(BatchEntity batch) async {
+  addBatch(BatchEntity batch) async {
     state.copyWith(isLoading: true);
     var data = await batchUseCase.addBatch(batch);
 
@@ -25,14 +25,13 @@ class BatchViewModel extends StateNotifier<BatchState> {
     );
   }
 
-  Future<void> getAllBatches() async {
+  getAllBatches() async {
     state = state.copyWith(isLoading: true);
     var data = await batchUseCase.getAllBatches();
 
     data.fold(
       (l) => state = state.copyWith(isLoading: false, error: l.error),
-      (r) => state = state.copyWith(isLoading: false, batches: r),
+      (r) => state = state.copyWith(isLoading: false, batches: r, error: null),
     );
   }
 }
-

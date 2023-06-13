@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/router/app_route.dart';
-import 'package:hive_and_api_for_class/core/common/provider/internet_connectivity.dart';
 import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 
@@ -22,19 +21,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {
-    final internetConnectivity = ref.watch(connectivityStatusProvider);
-
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      if (internetConnectivity == ConnectivityStatus.isConnected) {
-        showSnackBar(message: 'Internet connected', context: context);
-      } else {
-        showSnackBar(
-          message: 'Internet not connected',
-          context: context,
-          color: Colors.red,
-        );
-      }
-    });
     return Scaffold(
       body: SafeArea(
         child: Form(
@@ -47,6 +33,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                   children: [
                     _gap,
                     TextFormField(
+                      key: const ValueKey('username'),
                       controller: _usernameController,
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
@@ -61,6 +48,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                     ),
                     _gap,
                     TextFormField(
+                      key: const ValueKey('password'),
                       controller: _passwordController,
                       obscureText: isObscure,
                       decoration: InputDecoration(
@@ -85,6 +73,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                     ),
                     _gap,
                     ElevatedButton(
+                      key: const ValueKey('loginButton'),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           bool isLogin = await ref
@@ -123,6 +112,7 @@ class _LoginViewState extends ConsumerState<LoginView> {
                     ),
                     const SizedBox(height: 8),
                     ElevatedButton(
+                      key: const ValueKey('registerButton'),
                       onPressed: () {
                         Navigator.pushNamed(context, AppRoute.registerRoute);
                       },

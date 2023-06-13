@@ -3,7 +3,8 @@ import 'package:hive_and_api_for_class/features/course/domain/entity/course_enti
 import 'package:hive_and_api_for_class/features/course/domain/use_case/course_usecase.dart';
 import 'package:hive_and_api_for_class/features/course/presentation/state/course_state.dart';
 
-final courseViewModelProvider = StateNotifierProvider<CourseViewModel, CourseState>(
+final courseViewModelProvider =
+    StateNotifierProvider<CourseViewModel, CourseState>(
   (ref) => CourseViewModel(
     ref.read(courseUseCaseProvider),
   ),
@@ -12,7 +13,7 @@ final courseViewModelProvider = StateNotifierProvider<CourseViewModel, CourseSta
 class CourseViewModel extends StateNotifier<CourseState> {
   final CourseUseCase courseUsecase;
   CourseViewModel(this.courseUsecase) : super(CourseState.initial()) {
-    getAllCourses();
+    //  getAllCourses();
   }
 
   Future<void> addCourse(CourseEntity course) async {
