@@ -6,7 +6,7 @@ import 'package:hive_and_api_for_class/features/batch/domain/repository/batch_re
 
 final batchUsecaseProvider = Provider<BatchUseCase>(
   (ref) => BatchUseCase(
-    batchRepository: ref.read(batchRepositoryProvider),
+    batchRepository: ref.watch(batchRepositoryProvider),
   ),
 );
 

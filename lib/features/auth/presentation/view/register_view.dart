@@ -28,6 +28,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
   final _phoneController = TextEditingController(text: '9812345678');
   final _usernameController = TextEditingController(text: 'kiran');
   final _passwordController = TextEditingController(text: 'kiran123');
+
   bool isObscure = true;
   @override
   Widget build(BuildContext context) {

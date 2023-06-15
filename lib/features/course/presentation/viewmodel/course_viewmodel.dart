@@ -13,7 +13,7 @@ final courseViewModelProvider =
 class CourseViewModel extends StateNotifier<CourseState> {
   final CourseUseCase courseUsecase;
   CourseViewModel(this.courseUsecase) : super(CourseState.initial()) {
-    //  getAllCourses();
+    getAllCourses();
   }
 
   Future<void> addCourse(CourseEntity course) async {

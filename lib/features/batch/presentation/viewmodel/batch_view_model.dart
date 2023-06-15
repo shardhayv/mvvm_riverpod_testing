@@ -5,14 +5,14 @@ import 'package:hive_and_api_for_class/features/batch/presentation/state/batch_s
 
 final batchViewModelProvider =
     StateNotifierProvider<BatchViewModel, BatchState>(
-  (ref) => BatchViewModel(ref.read(batchUsecaseProvider)),
+  (ref) => BatchViewModel(ref.watch(batchUsecaseProvider)),
 );
 
 class BatchViewModel extends StateNotifier<BatchState> {
   final BatchUseCase batchUseCase;
 
   BatchViewModel(this.batchUseCase) : super(BatchState.initial()) {
-    //  getAllBatches();
+    getAllBatches();
   }
 
   addBatch(BatchEntity batch) async {
@@ -28,6 +28,7 @@ class BatchViewModel extends StateNotifier<BatchState> {
   getAllBatches() async {
     state = state.copyWith(isLoading: true);
     var data = await batchUseCase.getAllBatches();
+    state = state.copyWith(batches: []);
 
     data.fold(
       (l) => state = state.copyWith(isLoading: false, error: l.error),
