@@ -13,6 +13,7 @@ class App extends StatelessWidget {
       theme: AppTheme.getApplicationTheme(),
       initialRoute: AppRoute.splashRoute,
       routes: AppRoute.getApplicationRoute(),
+      // home: const InternetCheck(),
     );
   }
 }

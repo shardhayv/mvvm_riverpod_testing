@@ -14,6 +14,11 @@ class BatchEntity extends Equatable {
         batchName: json["batchName"],
       );
 
+  Map<String, dynamic> toJson() => {
+        "batchId": batchId,
+        "batchName": batchName,
+      };
+
   @override
   List<Object?> get props => [batchId, batchName];
 }

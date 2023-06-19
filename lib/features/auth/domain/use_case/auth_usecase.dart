@@ -1,10 +1,12 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/core/failure/failure.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/repository/auth_repository.dart';
 
-final authUseCaseProvider = Provider((ref) {
+final authUseCaseProvider = Provider.autoDispose((ref) {
   return AuthUseCase(
     ref.read(authRepositoryProvider),
   );
@@ -21,8 +23,18 @@ class AuthUseCase {
 
   Future<Either<Failure, bool>> loginStudent(
       String username, String password) async {
-    return await _authRepository.loginStudent(username, password);
+    return await _authRepository.loginStudent(username, password).then(
+          (value) => value.fold(
+            (l) => left(l),
+            (r) {
+              // Save user details in shared preferences
+              return right(r);
+            },
+          ),
+        );
+  }
+
+  Future<Either<Failure, String>> uploadProfilePicture(File file) async {
+    return await _authRepository.uploadProfilePicture(file);
   }
 }
-
-

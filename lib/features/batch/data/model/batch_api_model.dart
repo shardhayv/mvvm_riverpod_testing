@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart';
@@ -5,20 +6,20 @@ import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity
 part 'batch_api_model.g.dart';
 
 final batchApiModelProvider = Provider<BatchApiModel>(
-  (ref) => BatchApiModel.empty(),
+  (ref) => const BatchApiModel.empty(),
 );
 
 @JsonSerializable()
-class BatchApiModel {
+class BatchApiModel extends Equatable {
   @JsonKey(name: '_id')
   final String? batchId;
   final String batchName;
 
-  BatchApiModel({
+  const BatchApiModel({
     required this.batchId,
     required this.batchName,
   });
-  BatchApiModel.empty()
+  const BatchApiModel.empty()
       : batchId = '',
         batchName = '';
 
@@ -42,4 +43,7 @@ class BatchApiModel {
   // Convert API List to Entity List
   List<BatchEntity> toEntityList(List<BatchApiModel> models) =>
       models.map((model) => model.toEntity()).toList();
+
+  @override
+  List<Object?> get props => [batchId, batchName];
 }

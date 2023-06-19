@@ -13,4 +13,11 @@ class CourseEntity {
       courseName: json['courseName'] as String,
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'courseId': courseId,
+      'courseName': courseName,
+    };
+  }
 }
