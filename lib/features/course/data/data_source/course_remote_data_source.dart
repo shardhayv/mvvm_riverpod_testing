@@ -7,7 +7,7 @@ import 'package:hive_and_api_for_class/core/network/remote/http_service.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 
 final courseRemoteDataSourceProvider =
-    Provider.autoDispose<CourseRemoteDataSource>(
+    Provider<CourseRemoteDataSource>(
   (ref) {
     return CourseRemoteDataSource(
       ref.read(httpServiceProvider),

@@ -5,7 +5,7 @@ import 'package:hive_and_api_for_class/features/course/data/data_source/course_r
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 import 'package:hive_and_api_for_class/features/course/domain/repository/course_repository.dart';
 
-final courseRemoteRepositoryProvider = Provider.autoDispose<ICourseRepository>(
+final courseRemoteRepositoryProvider = Provider<ICourseRepository>(
   (ref) => CourseRemoteRepositoryImpl(
     courseRemoteDataSource: ref.read(courseRemoteDataSourceProvider),
   ),

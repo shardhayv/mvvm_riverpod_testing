@@ -21,7 +21,7 @@ class SplashViewModel extends StateNotifier<void> {
 
     data.fold((l) => null, (token) {
       if (token != null) {
-        final bool isTokenExpired = JwtDecoder.isExpired(token);
+        bool isTokenExpired = isValidToken(token);
         if (isTokenExpired) {
           Navigator.popAndPushNamed(context, AppRoute.loginRoute);
         } else {
@@ -31,5 +31,21 @@ class SplashViewModel extends StateNotifier<void> {
         Navigator.popAndPushNamed(context, AppRoute.loginRoute);
       }
     });
+  }
+
+  bool isValidToken(String token) {
+    Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+
+    int expirationTimestamp = decodedToken['exp'];
+
+    final currentDate = DateTime.now().millisecondsSinceEpoch;
+
+    bool isTokenValid = currentDate > expirationTimestamp;
+
+    if (isTokenValid) {
+      return false;
+    } else {
+      return true;
+    }
   }
 }

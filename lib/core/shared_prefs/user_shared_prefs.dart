@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/core/failure/failure.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-final userSharedPrefsProvider = Provider.autoDispose<UserSharedPrefs>((ref) {
+final userSharedPrefsProvider = Provider<UserSharedPrefs>((ref) {
   return UserSharedPrefs();
 });
 

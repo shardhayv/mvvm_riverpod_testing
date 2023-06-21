@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_and_api_for_class/config/router/app_route.dart';
 import 'package:hive_and_api_for_class/features/splash/presentation/viewmodel/splash_view_model.dart';
 
 class SplashView extends ConsumerStatefulWidget {
@@ -13,9 +12,7 @@ class SplashView extends ConsumerStatefulWidget {
 class _SplashViewState extends ConsumerState<SplashView> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.popAndPushNamed(context, AppRoute.loginRoute);
-    });
+    Future.delayed(const Duration(seconds: 2), () {});
 
     ref.read(splashViewModelProvider.notifier).checkValidToken(context);
     super.initState();

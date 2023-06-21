@@ -68,7 +68,7 @@ class AuthViewModel extends StateNotifier<AuthState> {
       },
       (success) {
         state = state.copyWith(isLoading: false, error: null);
-        Navigator.pushNamed(context, AppRoute.homeRoute);
+        Navigator.popAndPushNamed(context, AppRoute.homeRoute);
       },
     );
   }

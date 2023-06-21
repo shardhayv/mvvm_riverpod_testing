@@ -6,7 +6,7 @@ import 'package:hive_and_api_for_class/core/failure/failure.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart';
 import 'package:hive_and_api_for_class/features/auth/domain/repository/auth_repository.dart';
 
-final authUseCaseProvider = Provider.autoDispose((ref) {
+final authUseCaseProvider = Provider((ref) {
   return AuthUseCase(ref.read(authRepositoryProvider));
 });
 

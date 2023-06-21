@@ -8,7 +8,7 @@ import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entit
 import 'package:hive_and_api_for_class/features/auth/domain/repository/auth_repository.dart';
 
 final authRemoteRepositoryProvider =
-    Provider.autoDispose<IAuthRepository>((ref) {
+    Provider<IAuthRepository>((ref) {
   return AuthRemoteRepositoy(
     ref.read(authRemoteDataSourceProvider),
   );
