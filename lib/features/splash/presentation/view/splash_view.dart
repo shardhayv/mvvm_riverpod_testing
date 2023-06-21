@@ -14,7 +14,7 @@ class _SplashViewState extends ConsumerState<SplashView> {
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {});
 
-    ref.read(splashViewModelProvider.notifier).checkValidToken(context);
+    ref.read(splashViewModelProvider.notifier).init(context);
     super.initState();
   }
 
