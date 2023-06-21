@@ -93,6 +93,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                             children: [
                               ElevatedButton.icon(
                                 onPressed: () {
+                                  checkCameraPermission();
                                   _browseImage(ref, ImageSource.camera);
                                   Navigator.pop(context);
                                   // Upload image it is not null

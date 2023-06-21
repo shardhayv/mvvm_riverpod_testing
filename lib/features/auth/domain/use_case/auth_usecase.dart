@@ -7,9 +7,7 @@ import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entit
 import 'package:hive_and_api_for_class/features/auth/domain/repository/auth_repository.dart';
 
 final authUseCaseProvider = Provider.autoDispose((ref) {
-  return AuthUseCase(
-    ref.read(authRepositoryProvider),
-  );
+  return AuthUseCase(ref.read(authRepositoryProvider));
 });
 
 class AuthUseCase {
@@ -17,24 +15,16 @@ class AuthUseCase {
 
   AuthUseCase(this._authRepository);
 
+  Future<Either<Failure, String>> uploadProfilePicture(File file) async {
+    return await _authRepository.uploadProfilePicture(file);
+  }
+
   Future<Either<Failure, bool>> registerStudent(StudentEntity student) async {
     return await _authRepository.registerStudent(student);
   }
 
   Future<Either<Failure, bool>> loginStudent(
       String username, String password) async {
-    return await _authRepository.loginStudent(username, password).then(
-          (value) => value.fold(
-            (l) => left(l),
-            (r) {
-              // Save user details in shared preferences
-              return right(r);
-            },
-          ),
-        );
-  }
-
-  Future<Either<Failure, String>> uploadProfilePicture(File file) async {
-    return await _authRepository.uploadProfilePicture(file);
+    return await _authRepository.loginStudent(username, password);
   }
 }

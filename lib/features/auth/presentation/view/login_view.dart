@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/config/router/app_route.dart';
-import 'package:hive_and_api_for_class/core/common/snackbar/my_snackbar.dart';
 import 'package:hive_and_api_for_class/features/auth/presentation/viewmodel/auth_view_model.dart';
 
 class LoginView extends ConsumerStatefulWidget {
@@ -76,25 +75,26 @@ class _LoginViewState extends ConsumerState<LoginView> {
                       key: const ValueKey('loginButton'),
                       onPressed: () async {
                         if (_formKey.currentState!.validate()) {
-                          bool isLogin = await ref
+                          await ref
                               .read(authViewModelProvider.notifier)
                               .loginStudent(
+                                context,
                                 _usernameController.text,
                                 _passwordController.text,
                               );
 
-                          // We don't use Navigator and Snackbar here, but for
-                          // time being, we will use it.
-                          if (isLogin) {
-                            Navigator.pushNamed(context, AppRoute.homeRoute);
-                          } else {
-                            showSnackBar(
-                              message:
-                                  'Either username or password is incorrect',
-                              context: context,
-                              color: Colors.red,
-                            );
-                          }
+                          //   // We don't use Navigator and Snackbar here, but for
+                          //   // time being, we will use it.
+                          //   if (isLogin) {
+                          //     Navigator.pushNamed(context, AppRoute.homeRoute);
+                          //   } else {
+                          //     showSnackBar(
+                          //       message:
+                          //           'Either username or password is incorrect',
+                          //       context: context,
+                          //       color: Colors.red,
+                          //     );
+                          //   }
                         }
                       },
                       child: const SizedBox(

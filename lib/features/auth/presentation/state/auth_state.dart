@@ -32,3 +32,5 @@ class AuthState {
   @override
   String toString() => 'AuthState(isLoading: $isLoading, error: $error)';
 }
+
+

@@ -24,6 +24,7 @@ class StudentEntity {
     required this.password,
   });
 
+
   factory StudentEntity.fromJson(Map<String, dynamic> json) => StudentEntity(
         id: json["id"],
         fname: json["fname"],
