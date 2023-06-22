@@ -88,7 +88,6 @@ class AuthRemoteDataSource {
     }
   }
 
-  //Login
   Future<Either<Failure, bool>> loginStudent(
     String username,
     String password,
@@ -124,3 +123,4 @@ class AuthRemoteDataSource {
     }
   }
 }
+

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/features/batch/presentation/viewmodel/batch_view_model.dart';
 import 'package:hive_and_api_for_class/features/course/presentation/viewmodel/course_viewmodel.dart';
 import 'package:hive_and_api_for_class/features/home/presentation/widget/batch_widget.dart';
-import 'package:hive_and_api_for_class/features/home/presentation/widget/course_widget.dart';
 
 class DashboardView extends ConsumerStatefulWidget {
   const DashboardView({super.key});
@@ -38,19 +37,19 @@ class _DashboardViewState extends ConsumerState<DashboardView> {
             Flexible(
               child: BatchWidget(batchList: batchState.batches),
             ),
-            const Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Courses',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            Flexible(
-              child: CourseWidget(courseList: courseState.courses),
-            ),
+            // const Align(
+            //   alignment: Alignment.centerLeft,
+            //   child: Text(
+            //     'Courses',
+            //     style: TextStyle(
+            //       fontSize: 20,
+            //       fontWeight: FontWeight.bold,
+            //     ),
+            //   ),
+            // ),
+            // Flexible(
+            //   child: CourseWidget(courseList: courseState.courses),
+            // ),
           ],
         ),
       ),

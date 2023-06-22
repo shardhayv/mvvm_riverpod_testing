@@ -14,8 +14,11 @@ class LoginView extends ConsumerStatefulWidget {
 
 class _LoginViewState extends ConsumerState<LoginView> {
   final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController(text: 'kiran');
-  final _passwordController = TextEditingController(text: 'kiran123');
+  // final _usernameController = TextEditingController(text: 'kiran');
+  // final _passwordController = TextEditingController(text: 'kiran123');
+
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _gap = const SizedBox(height: 8);
   bool isObscure = true;
   @override
@@ -82,19 +85,6 @@ class _LoginViewState extends ConsumerState<LoginView> {
                                 _usernameController.text,
                                 _passwordController.text,
                               );
-
-                          //   // We don't use Navigator and Snackbar here, but for
-                          //   // time being, we will use it.
-                          //   if (isLogin) {
-                          //     Navigator.pushNamed(context, AppRoute.homeRoute);
-                          //   } else {
-                          //     showSnackBar(
-                          //       message:
-                          //           'Either username or password is incorrect',
-                          //       context: context,
-                          //       color: Colors.red,
-                          //     );
-                          //   }
                         }
                       },
                       child: const SizedBox(

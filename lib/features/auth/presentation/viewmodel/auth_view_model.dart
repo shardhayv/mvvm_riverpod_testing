@@ -55,16 +55,17 @@ class AuthViewModel extends StateNotifier<AuthState> {
   }
 
   Future<void> loginStudent(
-      BuildContext context, String username, String password) async {
+    BuildContext context,
+    String username,
+    String password,
+  ) async {
     state = state.copyWith(isLoading: true);
     var data = await _authUseCase.loginStudent(username, password);
     data.fold(
       (failure) {
         state = state.copyWith(isLoading: false, error: failure.error);
         showSnackBar(
-            message: 'Invalid credentials',
-            context: context,
-            color: Colors.red);
+            message: failure.error, context: context, color: Colors.red);
       },
       (success) {
         state = state.copyWith(isLoading: false, error: null);
@@ -73,3 +74,4 @@ class AuthViewModel extends StateNotifier<AuthState> {
     );
   }
 }
+
