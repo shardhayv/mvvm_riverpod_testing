@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_and_api_for_class/config/router/app_route.dart';
+
+import '../viewmodel/splash_view_model.dart';
 
 class SplashView extends ConsumerStatefulWidget {
   const SplashView({super.key});
@@ -12,11 +13,11 @@ class SplashView extends ConsumerStatefulWidget {
 class _SplashViewState extends ConsumerState<SplashView> {
   @override
   void initState() {
+    // Wait for 2 seconds and then navigate
     Future.delayed(const Duration(seconds: 2), () {
-      Navigator.pushReplacementNamed(context, AppRoute.loginRoute);
+      ref.read(splashViewModelProvider.notifier).init(context);
     });
 
-    //ref.read(splashViewModelProvider.notifier).init(context);
     super.initState();
   }
 

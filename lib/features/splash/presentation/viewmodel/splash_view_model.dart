@@ -45,3 +45,4 @@ class SplashViewModel extends StateNotifier<void> {
     return currentDate > expirationTimestamp * 1000;
   }
 }
+
