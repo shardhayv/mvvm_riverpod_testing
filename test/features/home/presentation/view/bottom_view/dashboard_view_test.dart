@@ -98,8 +98,8 @@ import 'package:hive_and_api_for_class/features/course/presentation/viewmodel/co
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import '../../../../../../build/app/intermediates/assets/debug/flutter_assets/test_data/course_entity_test.dart';
 import '../../../../../../test_data/batch_entity_test.dart';
-import '../../../../../../test_data/course_entity_test.dart';
 import 'dashboard_view_test.mocks.dart';
 
 @GenerateNiceMocks([
@@ -128,6 +128,17 @@ void main() {
       when(mockCourseUsecase.getAllCourses())
           .thenAnswer((_) async => Right(courseEntity));
 
+      // // Overriding the batchusecase from the mockbatchusecase
+      // final mockBatchViewModelProvider =
+      //     StateNotifierProvider<BatchViewModel, BatchState>(
+      //   (ref) => BatchViewModel(mockBatchUsecase),
+      // );
+
+      // final mockCourseViewModelProvider =
+      //     StateNotifierProvider<CourseViewModel, CourseState>(
+      //   (ref) => CourseViewModel(mockCourseUsecase),
+      // );
+
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
@@ -135,6 +146,11 @@ void main() {
                 .overrideWith((ref) => BatchViewModel(mockBatchUsecase)),
             courseViewModelProvider
                 .overrideWith((ref) => CourseViewModel(mockCourseUsecase)),
+
+            // batchViewModelProvider
+            //     .overrideWithProvider(mockBatchViewModelProvider),
+            // courseViewModelProvider
+            //     .overrideWithProvider(mockCourseViewModelProvider),
           ],
           child: MaterialApp(
             routes: AppRoute.getApplicationRoute(),
@@ -148,8 +164,8 @@ void main() {
       // expect(find.text('Dashboard View'), findsOneWidget);
 
       expect(find.byType(GridView), findsNWidgets(2));
-
-      //expect(find.byType(Card), findsNWidgets(8));
     },
   );
 }
+
+//https://www.youtube.com/watch?v=7E-YOGBitqc&t=885s

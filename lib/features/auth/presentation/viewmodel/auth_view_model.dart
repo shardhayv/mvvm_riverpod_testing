@@ -74,4 +74,3 @@ class AuthViewModel extends StateNotifier<AuthState> {
     );
   }
 }
-
