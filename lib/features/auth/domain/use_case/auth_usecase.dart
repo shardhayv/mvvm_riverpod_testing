@@ -19,7 +19,7 @@ class AuthUseCase {
     return await _authRepository.uploadProfilePicture(file);
   }
 
-  Future<Either<Failure, bool>> registerStudent(StudentEntity student) async {
+  Future<Either<Failure, bool>> registerStudent(AuthEntity student) async {
     return await _authRepository.registerStudent(student);
   }
 
@@ -28,4 +28,3 @@ class AuthUseCase {
     return await _authRepository.loginStudent(username, password);
   }
 }
-

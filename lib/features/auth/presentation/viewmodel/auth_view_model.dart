@@ -34,8 +34,7 @@ class AuthViewModel extends StateNotifier<AuthState> {
     );
   }
 
-  Future<void> registerStudent(
-      BuildContext context, StudentEntity student) async {
+  Future<void> registerStudent(BuildContext context, AuthEntity student) async {
     state = state.copyWith(isLoading: true);
     var data = await _authUseCase.registerStudent(student);
     data.fold(

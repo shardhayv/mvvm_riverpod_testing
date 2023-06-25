@@ -279,7 +279,7 @@ class _RegisterViewState extends ConsumerState<RegisterView> {
                     child: ElevatedButton(
                       onPressed: () {
                         if (_key.currentState!.validate()) {
-                          var student = StudentEntity(
+                          var student = AuthEntity(
                             fname: _fnameController.text,
                             lname: _lnameController.text,
                             image:

@@ -12,10 +12,10 @@ class _ProfileViewState extends State<ProfileView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Course View'),
+        title: const Text('Profile'),
       ),
       body: const Center(
-        child: Text('Course View'),
+        child: Text('Profile View'),
       ),
     );
   }

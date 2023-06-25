@@ -1,7 +1,7 @@
 import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 
-class StudentEntity {
+class AuthEntity {
   final String? id;
   final String fname;
   final String lname;
@@ -12,7 +12,7 @@ class StudentEntity {
   final String username;
   final String password;
 
-  StudentEntity({
+  AuthEntity({
     this.id,
     required this.fname,
     required this.lname,
@@ -24,8 +24,7 @@ class StudentEntity {
     required this.password,
   });
 
-
-  factory StudentEntity.fromJson(Map<String, dynamic> json) => StudentEntity(
+  factory AuthEntity.fromJson(Map<String, dynamic> json) => AuthEntity(
         id: json["id"],
         fname: json["fname"],
         lname: json["lname"],

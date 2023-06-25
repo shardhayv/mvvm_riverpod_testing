@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/core/failure/failure.dart';
+import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 import 'package:hive_and_api_for_class/features/course/domain/repository/course_repository.dart';
 
@@ -21,5 +22,13 @@ class CourseUseCase {
 
   Future<Either<Failure, List<CourseEntity>>> getAllCourses() {
     return courseRepository.getAllCourses();
+  }
+
+  Future<Either<Failure, bool>> deleteCourse(String id) async {
+    return courseRepository.deleteCourse(id);
+  }
+
+  Future<Either<Failure, List<BatchEntity>>> getAllBatches() async {
+    return const Right([]);
   }
 }

@@ -1,5 +1,10 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+final courseApiModelProvider = Provider<CourseApiModel>(
+  (ref) => CourseApiModel.empty(),
+);
 
 @JsonSerializable()
 class CourseApiModel {
@@ -12,16 +17,19 @@ class CourseApiModel {
     required this.courseName,
   });
 
+  CourseApiModel.empty()
+      : courseId = '',
+        courseName = '';
+
   factory CourseApiModel.fromJson(Map<String, dynamic> json) {
     return CourseApiModel(
-      courseId: json['courseId'] as String,
+      courseId: json['_id'] as String,
       courseName: json['courseName'] as String,
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'courseId': courseId,
       'courseName': courseName,
     };
   }

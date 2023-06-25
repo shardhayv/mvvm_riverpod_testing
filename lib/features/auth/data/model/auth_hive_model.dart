@@ -64,7 +64,7 @@ class AuthHiveModel {
         );
 
   // Convert Hive Object to Entity
-  StudentEntity toEntity() => StudentEntity(
+  AuthEntity toEntity() => AuthEntity(
         id: studentId,
         fname: fname,
         lname: lname,
@@ -76,7 +76,7 @@ class AuthHiveModel {
       );
 
   // Convert Entity to Hive Object
-  AuthHiveModel toHiveModel(StudentEntity entity) => AuthHiveModel(
+  AuthHiveModel toHiveModel(AuthEntity entity) => AuthHiveModel(
         studentId: const Uuid().v4(),
         fname: entity.fname,
         lname: entity.lname,
@@ -88,7 +88,7 @@ class AuthHiveModel {
       );
 
   // Convert Entity List to Hive List
-  List<AuthHiveModel> toHiveModelList(List<StudentEntity> entities) =>
+  List<AuthHiveModel> toHiveModelList(List<AuthEntity> entities) =>
       entities.map((entity) => toHiveModel(entity)).toList();
 
   @override

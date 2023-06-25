@@ -38,8 +38,9 @@ class SplashViewModel extends StateNotifier<void> {
   bool isValidToken(String token) {
     Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
 
+  // 10 digit
     int expirationTimestamp = decodedToken['exp'];
-
+  // 13 
     final currentDate = DateTime.now().millisecondsSinceEpoch;
     // If current date is greater than expiration timestamp then token is expired
     return currentDate > expirationTimestamp * 1000;

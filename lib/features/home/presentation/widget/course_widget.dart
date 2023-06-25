@@ -10,7 +10,7 @@ class CourseWidget extends StatelessWidget {
     return GridView.builder(
       shrinkWrap: true,
       itemCount: courseList.length,
-      physics: const NeverScrollableScrollPhysics(),
+      // physics: const NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         childAspectRatio: 1.5,

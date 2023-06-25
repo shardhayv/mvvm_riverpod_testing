@@ -16,6 +16,7 @@ import 'package:mockito/mockito.dart';
 
 import '../../../../../build/unit_test_assets/test_data/batch_entity_test.dart';
 import '../../../../../build/unit_test_assets/test_data/course_entity_test.dart';
+import '../../../home/presentation/view/bottom_view/dashboard_view_test.mocks.dart';
 import 'register_view_test.mocks.dart';
 
 @GenerateNiceMocks([])

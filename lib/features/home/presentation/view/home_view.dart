@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hive_and_api_for_class/features/home/presentation/view/bottom_view/batch_view.dart';
-import 'package:hive_and_api_for_class/features/home/presentation/view/bottom_view/course_view.dart';
+import 'package:hive_and_api_for_class/features/course/presentation/view/add_course_view.dart';
 import 'package:hive_and_api_for_class/features/home/presentation/view/bottom_view/dashboard_view.dart';
 import 'package:hive_and_api_for_class/features/home/presentation/view/bottom_view/profile_view.dart';
+
+import '../../../batch/presentation/view/add_batch_view.dart';
 
 class HomeView extends ConsumerStatefulWidget {
   const HomeView({super.key});
@@ -16,8 +17,8 @@ class _HomeViewState extends ConsumerState<HomeView> {
   int selectedIndex = 0;
   List<Widget> lstScreen = [
     const DashboardView(),
-    const CourseView(),
-    const BatchView(),
+    const AddCourseView(),
+    const AddBatchView(),
     const ProfileView(),
   ];
   @override

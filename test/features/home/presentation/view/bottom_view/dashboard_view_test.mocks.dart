@@ -7,6 +7,8 @@ import 'dart:async' as _i6;
 
 import 'package:dartz/dartz.dart' as _i3;
 import 'package:hive_and_api_for_class/core/failure/failure.dart' as _i7;
+import 'package:hive_and_api_for_class/features/auth/domain/entity/student_entity.dart'
+    as _i9;
 import 'package:hive_and_api_for_class/features/batch/domain/entity/batch_entity.dart'
     as _i8;
 import 'package:hive_and_api_for_class/features/batch/domain/repository/batch_repository.dart'
@@ -14,11 +16,11 @@ import 'package:hive_and_api_for_class/features/batch/domain/repository/batch_re
 import 'package:hive_and_api_for_class/features/batch/domain/use_case/batch_use_case.dart'
     as _i5;
 import 'package:hive_and_api_for_class/features/course/domain/entity/course_entity.dart'
-    as _i10;
+    as _i11;
 import 'package:hive_and_api_for_class/features/course/domain/repository/course_repository.dart'
     as _i4;
 import 'package:hive_and_api_for_class/features/course/domain/use_case/course_usecase.dart'
-    as _i9;
+    as _i10;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -131,12 +133,38 @@ class MockBatchUseCase extends _i1.Mock implements _i5.BatchUseCase {
           ),
         )),
       ) as _i6.Future<_i3.Either<_i7.Failure, bool>>);
+  @override
+  _i6.Future<_i3.Either<_i7.Failure, List<_i9.AuthEntity>>>
+      getAllStudentsByBatch(String? batchId) => (super.noSuchMethod(
+            Invocation.method(
+              #getAllStudentsByBatch,
+              [batchId],
+            ),
+            returnValue:
+                _i6.Future<_i3.Either<_i7.Failure, List<_i9.AuthEntity>>>.value(
+                    _FakeEither_1<_i7.Failure, List<_i9.AuthEntity>>(
+              this,
+              Invocation.method(
+                #getAllStudentsByBatch,
+                [batchId],
+              ),
+            )),
+            returnValueForMissingStub:
+                _i6.Future<_i3.Either<_i7.Failure, List<_i9.AuthEntity>>>.value(
+                    _FakeEither_1<_i7.Failure, List<_i9.AuthEntity>>(
+              this,
+              Invocation.method(
+                #getAllStudentsByBatch,
+                [batchId],
+              ),
+            )),
+          ) as _i6.Future<_i3.Either<_i7.Failure, List<_i9.AuthEntity>>>);
 }
 
 /// A class which mocks [CourseUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCourseUseCase extends _i1.Mock implements _i9.CourseUseCase {
+class MockCourseUseCase extends _i1.Mock implements _i10.CourseUseCase {
   @override
   _i4.ICourseRepository get courseRepository => (super.noSuchMethod(
         Invocation.getter(#courseRepository),
@@ -151,7 +179,7 @@ class MockCourseUseCase extends _i1.Mock implements _i9.CourseUseCase {
       ) as _i4.ICourseRepository);
   @override
   _i6.Future<_i3.Either<_i7.Failure, bool>> addCourse(
-          _i10.CourseEntity? course) =>
+          _i11.CourseEntity? course) =>
       (super.noSuchMethod(
         Invocation.method(
           #addCourse,
@@ -178,15 +206,15 @@ class MockCourseUseCase extends _i1.Mock implements _i9.CourseUseCase {
   @override
   _i6.Future<
       _i3
-          .Either<_i7.Failure, List<_i10.CourseEntity>>> getAllCourses() =>
+          .Either<_i7.Failure, List<_i11.CourseEntity>>> getAllCourses() =>
       (super.noSuchMethod(
         Invocation.method(
           #getAllCourses,
           [],
         ),
         returnValue:
-            _i6.Future<_i3.Either<_i7.Failure, List<_i10.CourseEntity>>>.value(
-                _FakeEither_1<_i7.Failure, List<_i10.CourseEntity>>(
+            _i6.Future<_i3.Either<_i7.Failure, List<_i11.CourseEntity>>>.value(
+                _FakeEither_1<_i7.Failure, List<_i11.CourseEntity>>(
           this,
           Invocation.method(
             #getAllCourses,
@@ -194,13 +222,64 @@ class MockCourseUseCase extends _i1.Mock implements _i9.CourseUseCase {
           ),
         )),
         returnValueForMissingStub:
-            _i6.Future<_i3.Either<_i7.Failure, List<_i10.CourseEntity>>>.value(
-                _FakeEither_1<_i7.Failure, List<_i10.CourseEntity>>(
+            _i6.Future<_i3.Either<_i7.Failure, List<_i11.CourseEntity>>>.value(
+                _FakeEither_1<_i7.Failure, List<_i11.CourseEntity>>(
           this,
           Invocation.method(
             #getAllCourses,
             [],
           ),
         )),
-      ) as _i6.Future<_i3.Either<_i7.Failure, List<_i10.CourseEntity>>>);
+      ) as _i6.Future<_i3.Either<_i7.Failure, List<_i11.CourseEntity>>>);
+  @override
+  _i6.Future<_i3.Either<_i7.Failure, bool>> deleteCourse(String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteCourse,
+          [id],
+        ),
+        returnValue: _i6.Future<_i3.Either<_i7.Failure, bool>>.value(
+            _FakeEither_1<_i7.Failure, bool>(
+          this,
+          Invocation.method(
+            #deleteCourse,
+            [id],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i3.Either<_i7.Failure, bool>>.value(
+                _FakeEither_1<_i7.Failure, bool>(
+          this,
+          Invocation.method(
+            #deleteCourse,
+            [id],
+          ),
+        )),
+      ) as _i6.Future<_i3.Either<_i7.Failure, bool>>);
+  @override
+  _i6.Future<_i3.Either<_i7.Failure, List<_i8.BatchEntity>>> getAllBatches() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getAllBatches,
+          [],
+        ),
+        returnValue:
+            _i6.Future<_i3.Either<_i7.Failure, List<_i8.BatchEntity>>>.value(
+                _FakeEither_1<_i7.Failure, List<_i8.BatchEntity>>(
+          this,
+          Invocation.method(
+            #getAllBatches,
+            [],
+          ),
+        )),
+        returnValueForMissingStub:
+            _i6.Future<_i3.Either<_i7.Failure, List<_i8.BatchEntity>>>.value(
+                _FakeEither_1<_i7.Failure, List<_i8.BatchEntity>>(
+          this,
+          Invocation.method(
+            #getAllBatches,
+            [],
+          ),
+        )),
+      ) as _i6.Future<_i3.Either<_i7.Failure, List<_i8.BatchEntity>>>);
 }
